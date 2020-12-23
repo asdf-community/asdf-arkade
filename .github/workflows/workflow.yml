@@ -3,10 +3,10 @@ name: Main workflow
 on:
   push:
     paths-ignore:
-      - "**.md"
+      - '**.md'
   pull_request:
     paths-ignore:
-      - "**.md"
+      - '**.md'
   schedule:
     - cron: 0 0 * * 5
 
@@ -17,9 +17,7 @@ jobs:
         os:
           - macos-latest
           - ubuntu-latest
-
     runs-on: ${{ matrix.os }}
-
     steps:
       - name: asdf_plugin_test
         uses: asdf-vm/actions/plugin-test@v1
@@ -27,3 +25,17 @@ jobs:
           command: ark version
         env:
           GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Run the sh-checker
+        uses: luizm/action-sh-checker@v0.1.8
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Optional if sh_checker_comment is false.
+          #SHELLCHECK_OPTS: -e SC1004 # Optional: exclude some shellcheck warnings.
+          SHFMT_OPTS: -i 2 # Optional: pass arguments to shfmt.
+        with:
+          sh_checker_comment: true
