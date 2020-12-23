@@ -16,3 +16,7 @@ asdf plugin-add arkade https://github.com/asdf-community/asdf-arkade
 ## Use
 
 Check out the [asdf](https://github.com/asdf-vm/asdf) readme for instructions on how to install and manage versions of arkade.
+
+## Source code
+
+This source code has been generated with : `cookiecutter --overwrite-if-exists --directory plugins/arkade --no-input cookiecutter-asdf-plugin`

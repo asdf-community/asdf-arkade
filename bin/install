@@ -5,6 +5,7 @@ set -o pipefail
 
 # https://github.com/alexellis/arkade/releases/download/0.6.10/arkade
 # https://github.com/alexellis/arkade/releases/download/0.6.10/arkade-darwin
+
 readonly NO_BINARY_ALTNAME=@@UNDEFINED@@
 readonly g_github_coordinates=alexellis/arkade
 readonly g_binary_name=arkade
