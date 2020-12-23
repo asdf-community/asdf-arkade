@@ -5,13 +5,14 @@ set -o pipefail
 
 # https://github.com/alexellis/arkade/releases/download/0.6.10/arkade
 # https://github.com/alexellis/arkade/releases/download/0.6.10/arkade-darwin
-readonly github_coordinates=alexellis/arkade
-readonly toolname=arkade
-readonly toolaltname=ark
-readonly filename_template=__BINARY_NAME____PLATFORM__
-readonly download_url_template=https://github.com/__GITHUB_COORDINATES__/releases/download/__VERSION__/__FILENAME__
-readonly binary_path_in_archive_template=__ARCHIVE_DIR__/__BINARY_NAME____PLATFORM__
-readonly downloaded_file_is_not_an_archive=true
+readonly g_github_coordinates=alexellis/arkade
+readonly g_binary_name=arkade
+readonly g_binary_altname=ark
+readonly g_filename_template=__BINARY_NAME____PLATFORM__
+readonly g_download_url_template=https://github.com/__GITHUB_COORDINATES__/releases/download/__VERSION__/__FILENAME__
+readonly g_binary_path_in_archive_template=__ARCHIVE_DIR__/__BINARY_NAME____PLATFORM__
+readonly g_downloaded_file_is_not_an_archive=true
+readonly g_platform_pattern=custom
 
 # Borrowed to someone, but I don't remember who it was, sorry :(
 # Print message $2 with log-level $1 to STDERR, colorized if terminal
@@ -94,12 +95,16 @@ get_binary_path_in_archive() {
   local version=$3
   local platform=$4
 
-  echo $binary_path_in_archive_template |
+  echo $g_binary_path_in_archive_template |
     sed "s|__ARCHIVE_DIR__|${archive_dir}|g;s|__BINARY_NAME__|${binary_name}|g;s|__VERSION__|${version}|g;s|__PLATFORM__|${platform}|g;"
 
 }
 
 get_platform() {
+  get_platform_${g_platform_pattern}_xxxx
+}
+
+get_platform_custom() {
   local operating_system
   operating_system=$(uname | tr '[:upper:]' '[:lower:]')
   if [[ "$operating_system" == "linux" ]]; then
@@ -120,7 +125,7 @@ get_filename() {
   version_short=$(echo "$version" | tr -d "v")
   #  log DEBUG "version=${version}, version_short=${version_short}, binary_name=${binary_name}, platform=${platform}"
 
-  echo "$filename_template" |
+  echo "$g_filename_template" |
     sed "s/__VERSION__/${version}/g;s/__VERSION_SHORT__/${version_short}/g;s/__BINARY_NAME__/${binary_name}/g;s/__PLATFORM__/${platform}/g"
 }
 
@@ -133,11 +138,11 @@ get_download_url() {
   filename="$(get_filename "$version" "$platform" "$binary_name")"
   #  log DEBUG "version=${version}, binary_name=${binary_name}, platform=${platform}, filename=${filename}"
 
-  echo "$download_url_template" |
-    sed "s|__GITHUB_COORDINATES__|${github_coordinates}|g;s|__VERSION__|${version}|g;s|__FILENAME__|${filename}|g;"
+  echo "$g_download_url_template" |
+    sed "s|__GITHUB_COORDINATES__|${g_github_coordinates}|g;s|__VERSION__|${version}|g;s|__FILENAME__|${filename}|g;"
 
 }
 
 readonly _tmp_download_dir="$(mktemp -d -t 'asdf_XXXXXXXX')"
 trap 'rm -rf "${_tmp_download_dir}"' EXIT
-install_tool "$ASDF_INSTALL_TYPE" "$ASDF_INSTALL_VERSION" "$ASDF_INSTALL_PATH" "$_tmp_download_dir" "$toolname" "$toolaltname" "$downloaded_file_is_not_an_archive"
+install_tool "$ASDF_INSTALL_TYPE" "$ASDF_INSTALL_VERSION" "$ASDF_INSTALL_PATH" "$_tmp_download_dir" "$g_binary_name" "$g_binary_altname" "$g_downloaded_file_is_not_an_archive"
