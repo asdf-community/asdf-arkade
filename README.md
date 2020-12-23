@@ -3,6 +3,10 @@
 ![AllInOne](https://github.com/asdf-community/asdf-arkade/workflows/AllInOne/badge.svg)
 [![GitHub license](https://img.shields.io/github/license/asdf-community/asdf-arkade?style=plastic)](https://github.com/asdf-community/asdf-arkade/blob/master/LICENSE)
 
+## Build History
+
+[![Build history](https://buildstats.info/github/chart/asdf-community/asdf-arkade?branch=master)](https://github.com/asdf-community/asdf-arkade/actions)
+
 ## arkade
 
 <https://github.com/alexellis/arkade>
