@@ -1,6 +1,6 @@
 # asdf-arkade
 
-[![GitHub Actions Status](https://github.com/asdf-community/asdf-arkade/workflows/All%20In%20One/badge.svg?branch=master)](https://github.com/asdf-community/asdf-arkade/actions)
+![AllInOne](https://github.com/asdf-community/asdf-arkade/workflows/AllInOne/badge.svg)
 [![GitHub license](https://img.shields.io/github/license/asdf-community/asdf-arkade?style=plastic)](https://github.com/asdf-community/asdf-arkade/blob/master/LICENSE)
 
 ## arkade
