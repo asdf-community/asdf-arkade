@@ -29,6 +29,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Install prereq
+        run: |
+          sudo apt-get -y install xz-utils
       - name: Run the sh-checker
         uses: luizm/action-sh-checker@v0.1.8
         env:
