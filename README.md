@@ -1,11 +1,6 @@
 # asdf-arkade
 
-![AllInOne](https://github.com/asdf-community/asdf-arkade/workflows/AllInOne/badge.svg)
 [![GitHub license](https://img.shields.io/github/license/asdf-community/asdf-arkade?style=plastic)](https://github.com/asdf-community/asdf-arkade/blob/master/LICENSE)
-
-## Build History
-
-[![Build history](https://buildstats.info/github/chart/asdf-community/asdf-arkade?branch=master)](https://github.com/asdf-community/asdf-arkade/actions)
 
 ## arkade
 
@@ -27,7 +22,4 @@ This source code has been generated with :
 
 ```bash
 cookiecutter --overwrite-if-exists --directory plugins/arkade --no-input https://github.com/looztra/cookiecutter-asdf-plugin
-
 ```
-
-
